@@ -7,3 +7,4 @@ next-env.d.ts
 
 # Synced from repo root on prebuild — committed for Vercel deploys
 # content/
+.vercel

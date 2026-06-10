@@ -35,3 +35,4 @@ DerivedData/
 *.log
 .npm/
 .vercel/
+.vercel
