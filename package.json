@@ -1,0 +1,11 @@
+{
+  "name": "native-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NativeBridge — Web ↔ Native WebView SDK (monorepo root)",
+  "scripts": {
+    "build": "npm run build --prefix website",
+    "dev": "npm run dev --prefix website",
+    "install:website": "npm install --prefix website"
+  }
+}
