@@ -1,0 +1,24 @@
+{
+  "name": "native-webview-bridge-react-native",
+  "version": "1.0.0",
+  "description": "React Native wrapper for native-webview-bridge — WebView bridge, UPI apps, intents",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "react-native": "src/index.ts",
+  "files": ["src", "android", "ios", "NativeWebViewBridgeRN.podspec"],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.71.0",
+    "react-native-webview": ">=13.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "react-native-webview": "^13.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": ["react-native", "webview", "bridge", "upi", "intent"],
+  "license": "MIT",
+  "homepage": "https://github.com/s3roy/native-bridge",
+  "repository": { "type": "git", "url": "https://github.com/s3roy/native-bridge.git" },
+  "author": "you"
+}

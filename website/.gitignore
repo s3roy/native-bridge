@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+
+# Synced from repo root on prebuild — committed for Vercel deploys
+# content/

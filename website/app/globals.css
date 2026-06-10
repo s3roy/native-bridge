@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-900 text-slate-100 antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-28;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-ink-800/60 backdrop-blur-sm;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-ink-950 transition hover:bg-accent-glow focus:outline-none focus:ring-2 focus:ring-accent/50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl border border-line bg-ink-800/50 px-6 py-3 text-sm font-semibold text-slate-200 transition hover:border-accent/40 hover:bg-ink-700/50 focus:outline-none focus:ring-2 focus:ring-accent/30;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full border border-line bg-ink-800 px-3 py-1 text-xs font-medium text-slate-300;
+  }
+
+  .code-block {
+    @apply overflow-x-auto rounded-xl border border-line bg-ink-950 p-5 font-mono text-[13px] leading-relaxed text-slate-300;
+  }
+}
+
+/* Syntax tokens */
+.token-key { color: #7dd3fc; }
+.token-str { color: #86efac; }
+.token-fn { color: #fbbf24; }
+.token-cmt { color: #64748b; }
+.token-kw { color: #c4b5fd; }
+
+/* Docs sidebar — independent scroll from main content */
+.docs-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(51 65 85) transparent;
+}
+.docs-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.docs-sidebar::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-600/60;
+}
+.docs-sidebar::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-500/80;
+}
+
+/* Documentation prose */
+.docs-prose {
+  @apply text-slate-300 leading-relaxed;
+}
+.docs-prose h1 {
+  @apply mb-6 text-3xl font-bold text-white md:text-4xl;
+}
+.docs-prose h2 {
+  @apply mb-4 mt-10 border-b border-line pb-2 text-xl font-semibold text-white;
+}
+.docs-prose h3 {
+  @apply mb-3 mt-8 text-lg font-semibold text-slate-200;
+}
+.docs-prose h4 {
+  @apply mb-2 mt-6 font-medium text-slate-200;
+}
+.docs-prose p {
+  @apply mb-4 text-slate-400;
+}
+.docs-prose ul, .docs-prose ol {
+  @apply mb-4 ml-6 space-y-2 text-slate-400;
+}
+.docs-prose ul { @apply list-disc; }
+.docs-prose ol { @apply list-decimal; }
+.docs-prose li { @apply leading-relaxed; }
+.docs-prose strong { @apply font-semibold text-slate-200; }
+
+/* Inline code only — not blocks inside <pre> */
+.docs-prose :not(pre) > code {
+  @apply rounded bg-ink-950 px-1.5 py-0.5 font-mono text-sm text-accent-glow;
+}
+
+/* Fenced code blocks & ASCII architecture diagrams */
+.docs-prose pre.docs-code-block,
+.docs-prose pre.docs-diagram {
+  @apply mb-6 overflow-x-auto rounded-xl border border-line bg-ink-950;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  -webkit-overflow-scrolling: touch;
+}
+.docs-prose pre.docs-code-block {
+  @apply p-4;
+}
+.docs-prose pre.docs-diagram {
+  @apply px-3 py-3 md:px-4;
+  line-height: 1.45;
+}
+.docs-prose pre code {
+  @apply block min-w-max bg-transparent p-0 font-mono text-slate-300;
+  white-space: pre;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+}
+.docs-prose pre.docs-diagram code {
+  @apply text-[11px] sm:text-xs md:text-[13px];
+  letter-spacing: 0;
+}
+.docs-prose pre.docs-code-block code {
+  @apply text-sm leading-relaxed;
+}
+
+/* Tables — horizontal scroll wrapper added in markdown-server */
+.docs-prose .docs-table-wrap {
+  @apply mb-6 overflow-x-auto rounded-xl border border-line;
+  -webkit-overflow-scrolling: touch;
+}
+.docs-prose .docs-table-wrap table {
+  @apply mb-0 w-full min-w-[36rem] border-collapse text-sm;
+}
+.docs-prose th {
+  @apply border border-line bg-ink-800 px-3 py-2 text-left font-medium text-slate-300;
+}
+.docs-prose td {
+  @apply border border-line px-3 py-2 text-slate-400;
+}
+.docs-prose hr {
+  @apply my-8 border-line;
+}
+.docs-prose blockquote {
+  @apply mb-4 border-l-4 border-accent/40 pl-4 italic text-slate-500;
+}

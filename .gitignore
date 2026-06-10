@@ -1,0 +1,37 @@
+# Dependencies & builds
+**/node_modules/
+**/.next/
+**/out/
+**/dist/
+react-native/lib/
+**/*.tsbuildinfo
+
+# Env
+.env
+.env*.local
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Android
+android/.gradle/
+android/build/
+android/**/build/
+**/.cxx/
+local.properties
+*.apk
+*.aab
+
+# iOS
+ios/.build/
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+
+# RN / misc
+*.log
+.npm/
+.vercel/
