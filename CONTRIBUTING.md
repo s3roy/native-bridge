@@ -11,6 +11,7 @@ Thank you for helping improve this project. **NativeBridge is fully open source 
 3. **Discuss big changes first.** Open an issue before large refactors, new bridge APIs, or breaking protocol changes.
 4. **Respect the license.** By contributing, you agree your work is licensed under MIT (same as the project).
 5. **Be kind.** See [Code of Conduct](./.github/CODE_OF_CONDUCT.md).
+6. **No AI tool attribution in commits.** Do not add co-author or Made-with trailers for AI tools. Maintainers use [`.cursor/rules/no-cursor-git-attribution.mdc`](./.cursor/rules/no-cursor-git-attribution.mdc) and an optional [git hook](./scripts/install-git-hooks.sh).
 
 ---
 
