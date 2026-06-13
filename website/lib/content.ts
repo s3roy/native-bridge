@@ -82,7 +82,7 @@ export const featureGroups = [
     ],
   },
   {
-    title: "India commerce",
+    title: "UPI & payments",
     icon: "₹",
     items: [
       "Detect UPI apps (PhonePe, GPay, Paytm)",

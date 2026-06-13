@@ -12,7 +12,7 @@ native-webview-bridge/
 
 **Web pages install nothing.** Once the native app adds this package, `window.NativeBridge` appears automatically inside the WebView.
 
-**Enterprise docs:** [docs/README.md](./docs/README.md) · [Executive brief](./docs/EXECUTIVE-BRIEF.md) · [Feature catalog](./docs/FEATURES.md) · [Production checklist](./docs/PRODUCTION-READINESS.md) · [Changelog](./CHANGELOG.md)
+**Documentation:** [docs/README.md](./docs/README.md) · [Overview](./docs/EXECUTIVE-BRIEF.md) · [Feature catalog](./docs/FEATURES.md) · [Production checklist](./docs/PRODUCTION-READINESS.md) · [Changelog](./CHANGELOG.md)
 
 ---
 

@@ -189,7 +189,7 @@ See [REACT-NATIVE.md](../react-native/REACT-NATIVE.md).
 
 ## 10. Roadmap candidates (not yet implemented)
 
-Features commonly requested in enterprise RFPs — available as extension points via `request()` / `publishEvent()`:
+Features commonly requested as extensions — available via `request()` / `publishEvent()` or custom native handlers:
 
 | Feature | Extension approach |
 |---------|-------------------|
@@ -200,20 +200,4 @@ Features commonly requested in enterprise RFPs — available as extension points
 | SSL pinning visibility | Extend `BridgeInterceptor` / URLProtocol |
 | Method allowlist | Host-configurable dispatcher filter |
 
----
-
-## Feature packaging for client proposals
-
-### Starter tier
-- BridgeWebView + device info + app state + data bridge
-
-### Standard tier
-- Starter + permissions + API capture + notifications
-
-### India commerce tier
-- Standard + UPI detection + payment intents
-
-### Enterprise tier
-- Full platform matrix + security review + custom `request()` handlers + RN support
-
-Use [PLATFORM-MATRIX.md](./PLATFORM-MATRIX.md) for exact parity when scoping SOWs.
+All shipped bridge features are **MIT open source** with no tiers or paid modules. See [PLATFORM-MATRIX.md](./PLATFORM-MATRIX.md) for platform parity.

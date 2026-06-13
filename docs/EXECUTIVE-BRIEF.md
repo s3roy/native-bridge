@@ -1,20 +1,21 @@
-# Native WebView Bridge — Executive Brief
+# Native WebView Bridge — Project overview
 
-**One-page overview for stakeholders, sales, and program sponsors.**
+**One-page summary of the open-source project.**
 
 | | |
 |---|---|
-| **Product** | native-webview-bridge |
+| **Product** | native-webview-bridge (NativeBridge) |
+| **License** | [MIT](../LICENSE) — free for personal and commercial use |
 | **Category** | Cross-platform WebView ↔ Native SDK |
 | **Platforms** | Android · iOS · React Native |
 | **Web impact** | Zero npm install — SDK auto-injected |
-| **Status** | Production-ready library (local / private distribution) |
+| **Repository** | [github.com/s3roy/native-bridge](https://github.com/s3roy/native-bridge) |
 
 ---
 
 ## Problem
 
-Enterprise apps increasingly ship **web UI inside native WebViews** (checkout, chat, dashboards). Today that requires:
+Apps increasingly ship **web UI inside native WebViews** (checkout, chat, dashboards). That often means:
 
 - Duplicate integration work on Android, iOS, and React Native
 - Custom JS bridges maintained per team
@@ -25,7 +26,7 @@ Enterprise apps increasingly ship **web UI inside native WebViews** (checkout, c
 
 ## Solution
 
-**native-webview-bridge** is a single, drop-in SDK that exposes native capabilities to web pages through one JavaScript API: `window.NativeBridge`.
+**native-webview-bridge** exposes native capabilities to web pages through one JavaScript API: `window.NativeBridge`.
 
 ```
 ┌──────────────┐     single API      ┌─────────────────────┐
@@ -34,32 +35,23 @@ Enterprise apps increasingly ship **web UI inside native WebViews** (checkout, c
 └──────────────┘                      └─────────────────────┘
 ```
 
-**Integration footprint:** ~1 day POC · minimal native code · web team changes nothing in build pipeline.
+**Integration footprint:** drop-in `BridgeWebView` + optional OkHttp interceptor (Android) or `NativeBridge.start()` (iOS).
 
 ---
 
-## Business value
-
-| Stakeholder | Outcome |
-|-------------|---------|
-| **Time to market** | Ship web features in app without per-platform bridge code |
-| **Cost** | One SDK vs three custom bridges (Android / iOS / RN) |
-| **Web velocity** | Frontend uses same API in every app shell |
-| **India market** | UPI app detection + payment launch from web checkout |
-| **Compliance-ready** | Documented security model and production checklist |
-
----
-
-## Core capabilities
+## What's included (everything, MIT)
 
 | Domain | What web can do |
 |--------|-----------------|
-| **Data bridge** | Read auth tokens, user id, config published by native |
+| **Core bridge** | RPC, events, multi-WebView data store, `WEBVIEW_LOADED` |
 | **App state** | Foreground/background, PiP, network, keyboard, battery, theme — realtime |
-| **Permissions** | Request camera, mic, location, notifications from web UI |
-| **Payments (India)** | List PhonePe / GPay / Paytm; open UPI payment flow |
-| **Deep links** | Open maps, dial, mail, third-party apps |
-| **Observability** | Inspect native HTTP traffic and notifications (optional) |
+| **Permissions** | Camera, mic, location, notifications from web UI |
+| **Payments (India)** | UPI app detection, payment intents, URI builder |
+| **Device** | Location, camera, gallery, clipboard, share, torch, maps |
+| **Observability** | Optional native HTTP and notification capture |
+| **React Native** | `BridgeWebView` + `NativeBridge` module — same web API |
+
+No feature tiers. See [FEATURES.md](./FEATURES.md) and [PLATFORM-MATRIX.md](./PLATFORM-MATRIX.md).
 
 ---
 
@@ -77,68 +69,23 @@ Enterprise apps increasingly ship **web UI inside native WebViews** (checkout, c
 
 ---
 
-## Commercial packaging (suggested)
-
-| Tier | Includes | Typical use case |
-|------|----------|------------------|
-| **Starter** | WebView bridge, device info, app state, data store | Internal tools, MVPs |
-| **Standard** | + permissions, API/notification capture | Chat, media, authenticated web apps |
-| **India Commerce** | + UPI detection & payment intents | E-commerce, fintech checkout |
-| **Enterprise** | + security review pack, RN, custom handlers, SLA | Bank, retail, telecom apps |
-
----
-
-## Security & governance
+## Security & production
 
 - Fixed API surface — web cannot execute arbitrary native code
-- WebView must load **trusted origins only** (documented hardening)
-- Sensitive data guidance for tokens and API capture
-- Pre-production checklist with AppSec sign-off template
-
-Full detail: [SECURITY.md](./SECURITY.md) · [PRODUCTION-READINESS.md](./PRODUCTION-READINESS.md)
+- Load **trusted origins only** in the WebView
+- [SECURITY.md](./SECURITY.md) · [PRODUCTION-READINESS.md](./PRODUCTION-READINESS.md)
 
 ---
 
-## Adoption timeline (typical enterprise)
+## Get started
 
-| Week | Milestone |
-|------|-----------|
-| 1 | POC — BridgeWebView + app state + device info |
-| 2 | Auth bridge — native publishes session to web |
-| 3 | Permissions + UPI checkout (if applicable) |
-| 4 | Security review + production sign-off |
+1. Clone [github.com/s3roy/native-bridge](https://github.com/s3roy/native-bridge)
+2. Follow [INSTALL.md](../INSTALL.md) for your platform
+3. Open the [playground](https://native-webview-bridge.vercel.app/playground) in `BridgeWebView` to test APIs
+4. Read [docs/README.md](./README.md) for the full index
 
----
-
-## Deliverables for client handoff
-
-- Android library (AAR module) + iOS Swift Package + React Native wrapper
-- TypeScript definitions for web teams
-- Enterprise documentation (architecture, API, security, platform matrix)
-- Integration guide (INSTALL.md) and feature catalog (FEATURES.md)
+**Contributing:** [CONTRIBUTING.md](../CONTRIBUTING.md)
 
 ---
 
-## Differentiators
-
-1. **Web installs nothing** — unlike Capacitor/Cordova-style web bundles
-2. **Near-zero native code** — drop-in WebView + one optional interceptor line
-3. **India-ready** — UPI app list and payment intents out of the box
-4. **Enterprise docs** — architecture, security, and go-live checklist included
-5. **Single protocol** — same `NativeBridge` API on Android, iOS, and RN
-
----
-
-## Next steps
-
-1. Schedule 30-min technical walkthrough with mobile + web leads
-2. Run 1-week POC on one production WebView screen
-3. AppSec review using [SECURITY.md](./SECURITY.md)
-4. Pin version and staged rollout (5% → 100%)
-
-**Technical contact:** Mobile platform team  
-**Documentation:** [docs/README.md](./README.md)
-
----
-
-*native-webview-bridge · Confidential — for client evaluation*
+*native-webview-bridge · MIT open source*

@@ -1,6 +1,6 @@
 # Production readiness checklist
 
-Enterprise go-live gate for **native-webview-bridge** deployments.
+Production go-live checklist for **native-webview-bridge** deployments.
 
 ---
 

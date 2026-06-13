@@ -19,7 +19,7 @@ The native side writes **almost no code** — capture, storage, and the web SDK
 injection are all built into the package. Web pages bundle **nothing**; the SDK
 is auto-injected into every page.
 
-**Enterprise documentation:** [docs/README.md](./docs/README.md) — architecture, feature catalog, API reference, security, production checklist. [Executive brief](./docs/EXECUTIVE-BRIEF.md) for sales / sponsors.
+**Documentation:** [docs/README.md](./docs/README.md) · [Overview](./docs/EXECUTIVE-BRIEF.md) · [Features](./docs/FEATURES.md) · [Install](./INSTALL.md) · [Production checklist](./docs/PRODUCTION-READINESS.md) · [Changelog](./CHANGELOG.md) · [MIT License](./LICENSE)
 
 **Marketing site:** [website/](./website/) — professional landing page (Next.js, deploy to Vercel).
 

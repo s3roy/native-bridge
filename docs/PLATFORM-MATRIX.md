@@ -1,6 +1,6 @@
 # Platform matrix
 
-Side-by-side comparison for scoping, SOWs, and engineering estimates.
+Side-by-side comparison for integration planning and platform parity checks.
 
 **Last updated:** package v1.0.0
 

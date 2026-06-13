@@ -2,7 +2,7 @@
 
 **License:** [MIT](../LICENSE) — free for commercial and personal use. [Contributing](../CONTRIBUTING.md) · [GitHub](https://github.com/s3roy/native-bridge)
 
-Technical documentation for engineering teams adopting **native-webview-bridge** in production mobile applications.
+Technical documentation for teams adopting **native-webview-bridge** in production mobile applications.
 
 ---
 
@@ -10,13 +10,13 @@ Technical documentation for engineering teams adopting **native-webview-bridge**
 
 | Document | Audience | Purpose |
 |----------|----------|---------|
-| [FEATURES.md](./FEATURES.md) | Product · Engineering · Sales | Complete feature catalog and platform parity matrix |
+| [FEATURES.md](./FEATURES.md) | Engineering · Product | Complete feature catalog |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Architects · Senior engineers | System design, message protocol, component boundaries |
 | [API-REFERENCE.md](./API-REFERENCE.md) | Web · Mobile engineers | Full Web SDK and native bridge method reference |
-| [SECURITY.md](./SECURITY.md) | Security · Compliance · AppSec | Threat model, data handling, hardening checklist |
+| [SECURITY.md](./SECURITY.md) | Security · AppSec | Threat model, data handling, hardening checklist |
 | [PRODUCTION-READINESS.md](./PRODUCTION-READINESS.md) | DevOps · Release managers | Go-live checklist, monitoring, versioning |
 | [PLATFORM-MATRIX.md](./PLATFORM-MATRIX.md) | Tech leads | Android · iOS · React Native · Web comparison |
-| [EXECUTIVE-BRIEF.md](./EXECUTIVE-BRIEF.md) | Sales · Sponsors · Leadership | One-page product overview for decks and RFPs |
+| [EXECUTIVE-BRIEF.md](./EXECUTIVE-BRIEF.md) | Anyone new to the project | One-page open-source project overview |
 
 ## Integration guides (by stack)
 
@@ -35,12 +35,14 @@ Technical documentation for engineering teams adopting **native-webview-bridge**
 | WebView cache & Vercel bandwidth | [../CACHE.md](../CACHE.md) |
 | TypeScript definitions | [../bridge-js/native-bridge.d.ts](../bridge-js/native-bridge.d.ts) |
 | Changelog | [../CHANGELOG.md](../CHANGELOG.md) |
+| Demo apps | [../examples/README.md](../examples/README.md) |
+| Playground (web) | [../website/app/playground](../website/app/playground) |
 
 ---
 
-## Executive summary
+## Summary
 
-**native-webview-bridge** is a cross-platform SDK that connects **web content inside native WebViews** to **native device and app capabilities** without requiring web teams to ship a separate JavaScript bundle.
+**native-webview-bridge** connects **web content inside native WebViews** to **native device and app capabilities** without requiring web teams to ship a separate JavaScript bundle. **Everything is MIT open source** — no paid tiers or feature gates.
 
 ### Value proposition
 
@@ -72,34 +74,30 @@ Technical documentation for engineering teams adopting **native-webview-bridge**
 
 ```
 native-webview-bridge/
-├── android/          Android library (AAR) — capture, WebView, permissions, payments
-├── ios/              Swift Package — capture, WebView, permissions, payments
+├── android/          Android library (AAR)
+├── ios/              Swift Package
 ├── react-native/     RN wrapper — BridgeWebView + native module
 ├── bridge-js/        Web SDK reference + TypeScript types (injected by native)
-└── docs/             Enterprise documentation (this folder)
+├── examples/         Demo apps (Android, iOS, React Native)
+├── website/          Docs site + interactive playground
+└── docs/             Documentation (this folder)
 ```
 
 ---
 
-## Versioning & support model (recommended for MNC rollout)
+## Versioning
 
-| Tier | Scope | Suggested SLA |
-|------|-------|---------------|
-| **L1 — Web SDK** | `NativeBridge.*` API stability, TypeScript types | Semver; breaking changes major version only |
-| **L2 — Native integration** | `BridgeWebView`, install steps | Documented in INSTALL.md per release |
-| **L3 — Platform parity** | Feature matrix in PLATFORM-MATRIX.md | Gaps documented; roadmap for new OS APIs |
-
-**Recommended release tagging:** `v1.x.y` aligned across `android/`, `ios/`, and `react-native/`.
+Tag **`vX.Y.Z`** across `android/`, `ios/`, `react-native/`, and `bridge-js/` together. See [CHANGELOG.md](../CHANGELOG.md).
 
 ---
 
-## Quick adoption path (enterprise)
+## Suggested adoption path
 
 ```
-Week 1   POC — BridgeWebView + getDeviceInfo + getAppState
+Week 1   POC — BridgeWebView + playground + getDeviceInfo + getAppState
 Week 2   Auth bridge — putData / getData for tokens
 Week 3   Permissions + UPI checkout (if India)
 Week 4   Security review (SECURITY.md) + production checklist
 ```
 
-For a full go-live gate, use [PRODUCTION-READINESS.md](./PRODUCTION-READINESS.md).
+For go-live, use [PRODUCTION-READINESS.md](./PRODUCTION-READINESS.md).
