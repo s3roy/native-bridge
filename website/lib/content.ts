@@ -5,7 +5,7 @@ export const site = {
     "Free, open-source SDK for Android, iOS, and React Native. Web pages inside your WebView get native APIs — permissions, UPI, device state, safe area, caching — with zero npm install.",
   version: "1.0.0",
   license: "MIT",
-  repoUrl: "https://github.com/s3roy/native-webview-bridge",
+  repoUrl: "https://github.com/s3roy/native-bridge",
   /** Public playground — same path works on Vercel after deploy */
   playgroundPath: "/playground",
   productionOrigin: "https://native-webview-bridge.vercel.app",

@@ -1,6 +1,6 @@
 # Native WebView Bridge — Documentation
 
-**License:** [MIT](../LICENSE) — free for commercial and personal use. [Contributing](../CONTRIBUTING.md) · [GitHub](https://github.com/s3roy/native-webview-bridge)
+**License:** [MIT](../LICENSE) — free for commercial and personal use. [Contributing](../CONTRIBUTING.md) · [GitHub](https://github.com/s3roy/native-bridge)
 
 Technical documentation for teams adopting **native-webview-bridge** in production mobile applications.
 

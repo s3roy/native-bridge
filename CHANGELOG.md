@@ -126,5 +126,5 @@ Before tagging `vX.Y.Z`:
 
 ---
 
-[Unreleased]: https://github.com/s3roy/native-webview-bridge/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/s3roy/native-webview-bridge/releases/tag/v1.0.0
+[Unreleased]: https://github.com/s3roy/native-bridge/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/s3roy/native-bridge/releases/tag/v1.0.0
