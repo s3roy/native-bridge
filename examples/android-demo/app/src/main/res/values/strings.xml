@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NativeBridge Demo</string>
+    <string name="url_hint">Playground URL</string>
+    <string name="load">Load</string>
+    <string name="native_log">Native event log</string>
+</resources>

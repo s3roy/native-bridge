@@ -20,5 +20,6 @@
   "license": "MIT",
   "homepage": "https://github.com/s3roy/native-bridge",
   "repository": { "type": "git", "url": "https://github.com/s3roy/native-bridge.git" },
-  "author": "you"
+  "author": "Souvik Roy",
+  "license": "MIT",
 }

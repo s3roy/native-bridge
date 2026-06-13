@@ -1,0 +1,20 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "NativeBridgeDemo"
+include ':app'
+include ':native-webview-bridge'
+project(':native-webview-bridge').projectDir = new File(settingsDir, '../../android')

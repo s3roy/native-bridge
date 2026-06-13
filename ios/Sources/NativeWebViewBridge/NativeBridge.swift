@@ -16,6 +16,9 @@ public final class NativeBridge: NSObject {
     private var webViewSeq = 0
     private var globalWebEventHandler: ((String, Any?, String, WKWebView) -> Void)?
     private var perWebViewEventHandlers = NSMapTable<WKWebView, AnyObject>.weakToStrongObjects()
+    private var globalWebViewLoadedHandler: WebViewLoadedHandler?
+    private var webViewLoadedHandlers: [WebViewLoadedHandler] = []
+    private var perWebViewLoadedHandlers = NSMapTable<WKWebView, AnyObject>.weakToStrongObjects()
     private var emitListeners: [(String, Any?) -> Void] = []
     private let emitLock = NSLock()
 
@@ -83,6 +86,12 @@ public final class NativeBridge: NSObject {
                 forMainFrameOnly: false
             )
             controller.addUserScript(script)
+            let loadedScript = WKUserScript(
+                source: BridgeLoadedScript.js,
+                injectionTime: .atDocumentStart,
+                forMainFrameOnly: true
+            )
+            controller.addUserScript(loadedScript)
         }
         attached.add(webView)
         _ = webViewId(for: webView)
@@ -117,6 +126,26 @@ public final class NativeBridge: NSObject {
         }
     }
 
+    /// Handle `WEBVIEW_LOADED` from any attached WebView (app-wide).
+    public func setWebViewLoadedHandler(_ handler: WebViewLoadedHandler?) {
+        globalWebViewLoadedHandler = handler
+    }
+
+    public func addWebViewLoadedHandler(_ handler: @escaping WebViewLoadedHandler) {
+        webViewLoadedHandlers.append(handler)
+    }
+
+    func setWebViewLoadedHandler(
+        _ webView: WKWebView,
+        handler: ((WebViewLoadedPayload) -> Void)?
+    ) {
+        if let handler = handler {
+            perWebViewLoadedHandlers.setObject(handler as AnyObject, forKey: webView)
+        } else {
+            perWebViewLoadedHandlers.removeObject(forKey: webView)
+        }
+    }
+
     private func deliverWebEvent(
         event: String,
         payload: Any?,
@@ -124,9 +153,30 @@ public final class NativeBridge: NSObject {
         webView: WKWebView?
     ) {
         guard let webView = webView else { return }
+        if event == WebEvents.webViewLoaded {
+            deliverWebViewLoaded(
+                WebViewLoadedPayload.parse(payload, fallbackWebViewId: webViewId),
+                webViewId: webViewId,
+                webView: webView
+            )
+        }
         globalWebEventHandler?(event, payload, webViewId, webView)
         if let perView = perWebViewEventHandlers.object(forKey: webView) as? ((String, Any?) -> Void) {
             perView(event, payload)
+        }
+    }
+
+    private func deliverWebViewLoaded(
+        _ parsed: WebViewLoadedPayload,
+        webViewId: String,
+        webView: WKWebView
+    ) {
+        globalWebViewLoadedHandler?(parsed, webViewId, webView)
+        for handler in webViewLoadedHandlers {
+            handler(parsed, webViewId, webView)
+        }
+        if let perView = perWebViewLoadedHandlers.object(forKey: webView) as? ((WebViewLoadedPayload) -> Void) {
+            perView(parsed)
         }
     }
 

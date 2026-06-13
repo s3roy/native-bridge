@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0f172a">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/urlInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/url_hint"
+            android:inputType="textUri"
+            android:singleLine="true"
+            android:textColor="#e2e8f0"
+            android:textColorHint="#64748b"
+            android:backgroundTint="#334155" />
+
+        <Button
+            android:id="@+id/loadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/load" />
+    </LinearLayout>
+
+    <com.bridge.BridgeWebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="8dp"
+        android:text="@string/native_log"
+        android:textColor="#94a3b8"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#1e293b">
+
+        <TextView
+            android:id="@+id/eventLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:textColor="#86efac"
+            android:textSize="11sp" />
+    </ScrollView>
+</LinearLayout>

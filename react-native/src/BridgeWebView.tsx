@@ -6,7 +6,7 @@ import {
   WebViewNavigation,
   WebViewProps,
 } from 'react-native-webview';
-import { BRIDGE_SCRIPT } from './bridgeScript';
+import { BRIDGE_LOADED_AUTO_SCRIPT, BRIDGE_SCRIPT } from './bridgeScript';
 import { buildBackPressInjection } from './bridgeBackPress';
 import { dispatchWebEvent } from './bridgeEvents';
 import { dispatchBridgeMessage, NativeBridge } from './NativeBridge';
@@ -221,8 +221,8 @@ export function BridgeWebView(props: BridgeWebViewProps) {
   }, [canGoBack, interceptBackPress]);
 
   const injected = injectedJavaScriptBeforeContentLoaded
-    ? `${BRIDGE_SCRIPT}\n${injectedJavaScriptBeforeContentLoaded}`
-    : BRIDGE_SCRIPT;
+    ? `${BRIDGE_SCRIPT}\n${BRIDGE_LOADED_AUTO_SCRIPT}\n${injectedJavaScriptBeforeContentLoaded}`
+    : `${BRIDGE_SCRIPT}\n${BRIDGE_LOADED_AUTO_SCRIPT}`;
 
   return (
     <WebView

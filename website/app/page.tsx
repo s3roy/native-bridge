@@ -44,6 +44,9 @@ export default function Home() {
               <Link href="/docs/install" className="btn-primary min-w-[180px]">
                 Get started
               </Link>
+              <Link href="/playground" className="btn-ghost min-w-[180px]">
+                Open playground
+              </Link>
               <Link href="/docs/overview" className="btn-ghost min-w-[180px]">
                 Read the docs
               </Link>
@@ -386,7 +389,13 @@ export default function Home() {
             <span className="text-slate-600">·</span>
             <span className="text-sm text-slate-500">v{site.version}</span>
             <span className="text-slate-600">·</span>
-            <span className="text-sm text-emerald-500/80">{site.license}</span>
+            <a
+              href={`${site.repoUrl}/blob/main/LICENSE`}
+              className="text-sm text-emerald-500/80 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer">
+              {site.license}
+            </a>
           </div>
           <p className="text-center text-sm text-slate-500">
             Open-source WebView bridge · Android · iOS · React Native

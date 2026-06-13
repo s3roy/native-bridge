@@ -33,6 +33,9 @@ export const BRIDGE_SCRIPT = String.raw`(function () {
     request: request,
     on: on,
     send: function (ev, pl) { send({ type: "event", event: ev, payload: pl !== undefined ? pl : null }); },
+    EVENTS: { WEBVIEW_LOADED: "WEBVIEW_LOADED" },
+    _buildWebViewLoadedPayload: function (ph, ex) { var p = { event: "WEBVIEW_LOADED", url: location.href, title: document.title || "", timestamp: Date.now(), readyState: document.readyState, phase: ph || "manual", referrer: document.referrer || null }; if (ex && typeof ex === "object") Object.keys(ex).forEach(function (k) { p[k] = ex[k]; }); return p; },
+    notifyWebViewLoaded: function (x) { x = x || {}; var t = this, p = t._buildWebViewLoadedPayload(x.phase || "manual", x); function d() { t.send(t.EVENTS.WEBVIEW_LOADED, p); return p; } if (!t.isAvailable()) return Promise.resolve(d()); return t.getWebViewId().then(function (i) { p.webViewId = i && (i.id || i.webViewId || i); return d(); }).catch(function () { return d(); }); },
     getApiCalls: function (f) { return request("bridge.getApiCalls", f || {}); },
     onApiCall: function (cb) { return on("api.call", cb); },
     getNotifications: function () { return request("bridge.getNotifications", {}); },
@@ -119,3 +122,6 @@ export const BRIDGE_SCRIPT = String.raw`(function () {
   };
   try { window.dispatchEvent(new Event("nativebridgeready")); } catch (e) {}
 })();`;
+
+/** Auto-emits WEBVIEW_LOADED on each document load. Keep in sync with bridge-js/webview-loaded-auto.min.js */
+export const BRIDGE_LOADED_AUTO_SCRIPT = String.raw`(function(){var n=window.NativeBridge;if(!n||!n.notifyWebViewLoaded)return;var s={dom:0,complete:0};function e(p){if(p==="dom"&&s.dom)return;if(p==="complete"&&s.complete)return;if(p==="dom")s.dom=1;if(p==="complete")s.complete=1;n.notifyWebViewLoaded({phase:p});}function d(){e("dom");}function c(){if(!s.dom)d();e("complete");}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",d);else d();if(document.readyState!=="complete")window.addEventListener("load",c);else c();})();`;

@@ -119,7 +119,7 @@ requestPermissions(arrayOf(android.Manifest.permission.READ_PHONE_STATE), 1)
    **OR** after pushing to GitHub:
 
    ```
-   https://github.com/YOUR_USER/native-webview-bridge
+   https://github.com/s3roy/native-bridge
    ```
    (set package path to `ios` if monorepo)
 

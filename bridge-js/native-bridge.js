@@ -87,6 +87,57 @@
       });
     },
 
+    /** Built-in web → native event names. */
+    EVENTS: {
+      WEBVIEW_LOADED: "WEBVIEW_LOADED",
+    },
+
+    _buildWebViewLoadedPayload: function (phase, extra) {
+      var payload = {
+        event: "WEBVIEW_LOADED",
+        url: location.href,
+        title: document.title || "",
+        timestamp: Date.now(),
+        readyState: document.readyState,
+        phase: phase || "manual",
+        referrer: document.referrer || null,
+      };
+      if (extra && typeof extra === "object") {
+        Object.keys(extra).forEach(function (k) {
+          payload[k] = extra[k];
+        });
+      }
+      return payload;
+    },
+
+    /**
+     * Notify native that this web page is ready. Called automatically on DOM/load;
+     * call manually after SPA client-side navigations.
+     */
+    notifyWebViewLoaded: function (extra) {
+      extra = extra || {};
+      var self = this;
+      var phase = extra.phase || "manual";
+      var payload = self._buildWebViewLoadedPayload(phase, extra);
+
+      function deliver() {
+        self.send(self.EVENTS.WEBVIEW_LOADED, payload);
+        return payload;
+      }
+
+      if (!self.isAvailable()) return Promise.resolve(deliver());
+
+      return self
+        .getWebViewId()
+        .then(function (id) {
+          payload.webViewId = id && (id.id || id.webViewId || id);
+          return deliver();
+        })
+        .catch(function () {
+          return deliver();
+        });
+    },
+
     // ---- built-in API (no native code required) ----
     /** Captured native API calls. filter: { urlContains, method, limit } */
     getApiCalls: function (filter) {

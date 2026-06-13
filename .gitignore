@@ -17,6 +17,7 @@ react-native/lib/
 *.swp
 
 # Android
+**/.gradle/
 android/.gradle/
 android/build/
 android/**/build/

@@ -1,5 +1,13 @@
 import { NativeModules } from 'react-native';
-import { dispatchWebEvent, onBridgeEvent, onWebEvent } from './bridgeEvents';
+import {
+  dispatchWebEvent,
+  onBridgeEvent,
+  onWebEvent,
+  onWebViewLoaded,
+  parseWebViewLoadedPayload,
+  WebEvents,
+} from './bridgeEvents';
+import type { WebViewLoadedPayload } from './bridgeEvents';
 
 const NativeWebViewBridge = NativeModules.NativeWebViewBridge as {
   start(): Promise<void>;
@@ -79,6 +87,14 @@ export const NativeBridge = {
   /** Web → JS events from pages inside BridgeWebView (`NativeBridge.send`). */
   onWebEvent: (handler: (event: string, payload: unknown, webViewId?: string) => void) =>
     onWebEvent(handler),
+
+  /** Web → JS `WEBVIEW_LOADED` with typed payload. */
+  onWebViewLoaded: (
+    handler: (payload: WebViewLoadedPayload, webViewId?: string) => void,
+  ) => onWebViewLoaded(handler),
+
+  WebEvents,
+  parseWebViewLoadedPayload,
 
   /** Push a custom event to mounted WebViews and native listeners. */
   publishEvent: (event: string, payload?: unknown) =>

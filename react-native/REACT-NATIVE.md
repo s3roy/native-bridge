@@ -162,6 +162,25 @@ useEffect(() => {
 }, []);
 ```
 
+### `WEBVIEW_LOADED` (auto + SPA)
+
+Emitted automatically when the page DOM is ready and when all resources finish loading. Use `onWebViewLoaded` for a typed handler:
+
+```tsx
+useEffect(() => {
+  return NativeBridge.onWebViewLoaded((payload) => {
+    if (payload.phase === 'complete') hideSplash();
+    if (payload.phase === 'manual') trackScreen(payload.route);
+  });
+}, []);
+```
+
+For client-side router navigations, call from the web page:
+
+```javascript
+NativeBridge.notifyWebViewLoaded({ phase: 'manual', route: '/settings' });
+```
+
 ---
 
 ## Realtime media in WebView

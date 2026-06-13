@@ -12,7 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- React Native live event relay — `NativeBridge.on()`, `onAppState`, `onData`, etc. via `NativeEventEmitter`
+- MIT [LICENSE](./LICENSE) and [CONTRIBUTING.md](./CONTRIBUTING.md) — fully open source
+- Bridge Playground at `/playground` on the docs site
+- Demo apps: `examples/android-demo`, `examples/ios-demo`, `examples/NativeBridgeDemo`
+- `WEBVIEW_LOADED` built-in web → native event with typed native listeners
 - React Native web → native events — `NativeBridge.send` in WebView + `NativeBridge.onWebEvent()` in RN JS
 - React Native `publishEvent()` — push custom events to mounted WebViews
 - `NativeBridge.addEmitListener` on Android/iOS core for host integrations
@@ -123,5 +126,5 @@ Before tagging `vX.Y.Z`:
 
 ---
 
-[Unreleased]: https://github.com/you/native-webview-bridge/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/you/native-webview-bridge/releases/tag/v1.0.0
+[Unreleased]: https://github.com/s3roy/native-bridge/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/s3roy/native-bridge/releases/tag/v1.0.0

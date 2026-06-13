@@ -82,6 +82,68 @@ bridgeWebView.setOnWebEvent { event, payload in /* … */ }
 NativeBridge.shared.publishEvent("order.updated", ["id": orderId])
 ```
 
+### `WEBVIEW_LOADED` (web → native, built-in)
+
+Fired automatically when the page DOM is ready (`phase: "dom"`) and again when all resources finish (`phase: "complete"`). Includes `url`, `title`, `webViewId`, `timestamp`, and `readyState`.
+
+**Web — automatic (no code required):**
+
+```javascript
+// Emitted twice per full page load: dom, then complete.
+// Listen on native (below) or send manually for SPA routes:
+router.afterEach((to) => {
+  NativeBridge.notifyWebViewLoaded({ phase: "manual", route: to.path });
+});
+```
+
+**Web — explicit:**
+
+```javascript
+NativeBridge.send(NativeBridge.EVENTS.WEBVIEW_LOADED, { route: "/checkout" });
+// or:
+await NativeBridge.notifyWebViewLoaded({ route: "/checkout" });
+```
+
+**Android — typed listener:**
+
+```kotlin
+NativeBridge.setOnWebViewLoaded { payload, webViewId, webView ->
+    when (payload.phase) {
+        WebViewLoadedPhase.DOM -> hideSplash()
+        WebViewLoadedPhase.COMPLETE -> trackPageView(payload.url)
+        WebViewLoadedPhase.MANUAL -> navigateFromSpa(payload.route)
+    }
+}
+
+bridgeWebView.setOnWebViewLoaded { payload ->
+    Log.d("Bridge", "loaded ${payload.url} (${payload.phase})")
+}
+```
+
+**iOS — typed listener:**
+
+```swift
+NativeBridge.shared.setWebViewLoadedHandler { payload, webViewId, webView in
+    if payload.phase == .complete {
+        analytics.trackScreen(payload.url)
+    }
+}
+
+bridgeWebView.setOnWebViewLoaded { payload in
+    print("loaded \(payload.url)")
+}
+```
+
+**React Native:**
+
+```typescript
+useEffect(() => {
+  return NativeBridge.onWebViewLoaded((payload, webViewId) => {
+    if (payload.phase === 'complete') hideSplash();
+  });
+}, []);
+```
+
 ### `nativebridgeready` event
 
 ```javascript

@@ -33,6 +33,9 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <Link href="/playground" className="btn-ghost py-2.5 text-xs">
+            Playground
+          </Link>
           <Link href="/docs/overview" className="btn-ghost py-2.5 text-xs">
             Docs
           </Link>

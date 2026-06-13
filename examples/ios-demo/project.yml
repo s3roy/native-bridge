@@ -1,0 +1,21 @@
+name: NativeBridgeDemo
+options:
+  bundleIdPrefix: com.bridge
+  deploymentTarget:
+    iOS: "13.0"
+packages:
+  NativeWebViewBridge:
+    path: ../../ios
+targets:
+  NativeBridgeDemo:
+    type: application
+    platform: iOS
+    sources:
+      - NativeBridgeDemo
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.bridge.demo
+      INFOPLIST_FILE: NativeBridgeDemo/Info.plist
+      SWIFT_VERSION: "5.0"
+    dependencies:
+      - package: NativeWebViewBridge
+        product: NativeWebViewBridge

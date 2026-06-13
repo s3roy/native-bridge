@@ -31,6 +31,10 @@ object NativeBridge {
     private var globalWebEventListener: WebEventListener? = null
     private val webEventListeners = CopyOnWriteArrayList<WebEventListener>()
     private val perWebViewEventListeners = java.util.WeakHashMap<WebView, (String, Any?) -> Unit>()
+    private var globalWebViewLoadedListener: WebViewLoadedListener? = null
+    private val webViewLoadedListeners = CopyOnWriteArrayList<WebViewLoadedListener>()
+    private val perWebViewLoadedListeners =
+        java.util.WeakHashMap<WebView, (WebViewLoadedPayload) -> Unit>()
     private val emitListeners = CopyOnWriteArrayList<(String, Any?) -> Unit>()
 
     // ---- Host app helpers (optional) ----------------------------------------
@@ -108,6 +112,7 @@ object NativeBridge {
     fun inject(webView: WebView) {
         webView.post {
             webView.evaluateJavascript(BridgeScript.JS, null)
+            webView.evaluateJavascript(BridgeLoadedScript.JS, null)
             injectSafeAreaCss(AppStateMonitor.getSafeArea())
         }
     }
@@ -167,6 +172,27 @@ object NativeBridge {
         webEventListeners.remove(listener)
     }
 
+    /** Handle [WebEvents.WEBVIEW_LOADED] from any attached WebView (app-wide). */
+    fun setOnWebViewLoaded(listener: WebViewLoadedListener?) {
+        globalWebViewLoadedListener = listener
+    }
+
+    fun addOnWebViewLoaded(listener: WebViewLoadedListener) {
+        webViewLoadedListeners.add(listener)
+    }
+
+    fun removeOnWebViewLoaded(listener: WebViewLoadedListener) {
+        webViewLoadedListeners.remove(listener)
+    }
+
+    internal fun setWebViewLoadedListener(
+        webView: WebView,
+        listener: ((WebViewLoadedPayload) -> Unit)?,
+    ) {
+        if (listener == null) perWebViewLoadedListeners.remove(webView)
+        else perWebViewLoadedListeners[webView] = listener
+    }
+
     internal fun setWebViewEventListener(
         webView: WebView,
         listener: ((event: String, payload: Any?) -> Unit)?,
@@ -181,6 +207,13 @@ object NativeBridge {
         webViewId: String,
         webView: WebView,
     ) {
+        if (event == WebEvents.WEBVIEW_LOADED) {
+            deliverWebViewLoaded(
+                WebViewLoadedPayload.parse(payload, webViewId),
+                webViewId,
+                webView,
+            )
+        }
         globalWebEventListener?.invoke(event, payload, webViewId, webView)
         webEventListeners.forEach { listener ->
             try {
@@ -189,6 +222,21 @@ object NativeBridge {
             }
         }
         perWebViewEventListeners[webView]?.invoke(event, payload)
+    }
+
+    private fun deliverWebViewLoaded(
+        parsed: WebViewLoadedPayload,
+        webViewId: String,
+        webView: WebView,
+    ) {
+        globalWebViewLoadedListener?.invoke(parsed, webViewId, webView)
+        webViewLoadedListeners.forEach { listener ->
+            try {
+                listener(parsed, webViewId, webView)
+            } catch (_: Exception) {
+            }
+        }
+        perWebViewLoadedListeners[webView]?.invoke(parsed)
     }
 
     // ---- Inbound requests from web ------------------------------------------

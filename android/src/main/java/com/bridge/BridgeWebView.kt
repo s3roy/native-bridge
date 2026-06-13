@@ -80,6 +80,11 @@ class BridgeWebView @JvmOverloads constructor(
         NativeBridge.setWebViewEventListener(this, listener)
     }
 
+    /** Handle [WebEvents.WEBVIEW_LOADED] from this WebView only. */
+    fun setOnWebViewLoaded(listener: ((payload: WebViewLoadedPayload) -> Unit)?) {
+        NativeBridge.setWebViewLoadedListener(this, listener)
+    }
+
     private fun setupInsetsListener() {
         ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

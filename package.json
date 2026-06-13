@@ -3,9 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "description": "NativeBridge — Web ↔ Native WebView SDK (monorepo root)",
+  "license": "MIT",
+  "author": "Souvik Roy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s3roy/native-bridge.git"
+  },
+  "homepage": "https://native-webview-bridge.vercel.app",
+  "bugs": {
+    "url": "https://github.com/s3roy/native-bridge/issues"
+  },
   "scripts": {
     "build": "npm run build --prefix website",
-    "dev": "npm run dev --prefix website",
+    "dev": "npm run dev --prefix website -- -p 3001",
     "install:website": "npm install --prefix website"
   },
   "dependencies": {

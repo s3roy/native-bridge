@@ -62,6 +62,11 @@ public final class BridgeWebView: WKWebView, WKNavigationDelegate, WKUIDelegate 
         NativeBridge.shared.setWebViewEventHandler(self, handler: handler)
     }
 
+    /// Handle `WEBVIEW_LOADED` from this WebView only.
+    public func setOnWebViewLoaded(_ handler: ((WebViewLoadedPayload) -> Void)?) {
+        NativeBridge.shared.setWebViewLoadedHandler(self, handler: handler)
+    }
+
     /// When true (default), edge-swipe back notifies the web page via `back.press`.
     public func setInterceptBackPress(_ enabled: Bool) {
         interceptBackPress = enabled

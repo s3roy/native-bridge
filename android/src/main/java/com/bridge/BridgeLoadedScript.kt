@@ -1,0 +1,10 @@
+package com.bridge
+
+/**
+ * Re-injected on every navigation to auto-emit [WebEvents.WEBVIEW_LOADED].
+ * Keep in sync with bridge-js/webview-loaded-auto.min.js.
+ */
+internal object BridgeLoadedScript {
+    const val JS: String =
+        """(function(){var n=window.NativeBridge;if(!n||!n.notifyWebViewLoaded)return;var s={dom:0,complete:0};function e(p){if(p==="dom"&&s.dom)return;if(p==="complete"&&s.complete)return;if(p==="dom")s.dom=1;if(p==="complete")s.complete=1;n.notifyWebViewLoaded({phase:p});}function d(){e("dom");}function c(){if(!s.dom)d();e("complete");}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",d);else d();if(document.readyState!=="complete")window.addEventListener("load",c);else c();})();"""
+}

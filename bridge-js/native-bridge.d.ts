@@ -39,6 +39,27 @@ export interface WebViewState {
   url: string | null;
 }
 
+/** Built-in web → native event names. */
+export declare const WebEvents: {
+  readonly WEBVIEW_LOADED: "WEBVIEW_LOADED";
+};
+
+export type WebViewLoadedPhase = "dom" | "complete" | "manual";
+
+/** Payload for `WEBVIEW_LOADED` (auto-sent + manual SPA notify). */
+export interface WebViewLoadedPayload {
+  event: "WEBVIEW_LOADED";
+  url: string;
+  title: string;
+  timestamp: number;
+  readyState: string;
+  phase: WebViewLoadedPhase;
+  referrer?: string | null;
+  webViewId?: string;
+  route?: string;
+  [key: string]: unknown;
+}
+
 export interface KeyboardState {
   visible: boolean;
   height: number;
@@ -406,6 +427,12 @@ export interface NativeBridgeApi {
   on(event: string, cb: (payload: unknown) => void): () => void;
   /** Fire-and-forget custom event to native (no response). */
   send(event: string, payload?: unknown): void;
+  /** Built-in web → native event names. */
+  readonly EVENTS: typeof WebEvents;
+  /** Notify native that this page is ready (also auto-fired on DOM + window load). */
+  notifyWebViewLoaded(
+    extra?: Partial<WebViewLoadedPayload> & Record<string, unknown>
+  ): Promise<WebViewLoadedPayload>;
 
   getApiCalls(filter?: ApiCallFilter): Promise<ApiCall[]>;
   onApiCall(cb: (call: ApiCall) => void): () => void;

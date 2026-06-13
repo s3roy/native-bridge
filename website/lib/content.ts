@@ -6,12 +6,16 @@ export const site = {
   version: "1.0.0",
   license: "MIT",
   repoUrl: "https://github.com/s3roy/native-bridge",
+  /** Public playground — same path works on Vercel after deploy */
+  playgroundPath: "/playground",
+  productionOrigin: "https://native-webview-bridge.vercel.app",
 };
 
 export const nav = [
   { label: "Power", href: "/#power" },
   { label: "How it works", href: "/#how-it-works" },
   { label: "Platforms", href: "/#platforms" },
+  { label: "Playground", href: "/playground" },
   { label: "Docs", href: "/docs/overview" },
 ];
 

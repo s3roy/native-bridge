@@ -1,5 +1,10 @@
 # native-webview-bridge
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![GitHub](https://img.shields.io/github/stars/s3roy/native-bridge?style=social)](https://github.com/s3roy/native-bridge)
+
+**Free and open source (MIT).** Use commercially without permission or royalties — see [LICENSE](./LICENSE). Contributions welcome: [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 A drop-in bridge so your **web pages running inside native Android/iOS WebViews**
 can request, on demand:
 
@@ -310,7 +315,7 @@ NativeBridge.putData("userId", user.id)
 **1. Add the Swift Package** (`File ▸ Add Packages…`) pointing at this repo, or:
 
 ```swift
-.package(url: "https://github.com/you/native-webview-bridge", from: "1.0.0")
+.package(url: "https://github.com/s3roy/native-bridge", from: "1.0.0")
 ```
 
 **2. One line in `AppDelegate`** to enable automatic network + notification capture:
@@ -422,3 +427,9 @@ native-webview-bridge/
 | **Android** | add dependency + use `BridgeWebView` + `addInterceptor(BridgeInterceptor())` |
 
 Everything else (capture, storage, events, SDK injection) is automatic.
+
+---
+
+## License
+
+[MIT License](./LICENSE) — Copyright (c) 2026 Souvik Roy. Free for personal, commercial, and closed-source use. Keep the copyright notice when you redistribute the software.
