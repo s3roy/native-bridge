@@ -4,7 +4,7 @@ NativeBridge is **fully open source** under the [MIT License](./LICENSE). Contri
 
 ## Ways to contribute
 
-- **Bug reports** — [GitHub Issues](https://github.com/s3roy/native-bridge/issues) with reproduction steps, platform, and SDK version
+- **Bug reports** — [GitHub Issues](https://github.com/s3roy/native-webview-bridge/issues) with reproduction steps, platform, and SDK version
 - **Pull requests** — focused changes with a clear description; match existing code style
 - **Docs** — edit markdown in the repo root (`README.md`, `INSTALL.md`, `docs/`); the website syncs from these on build
 - **Playground / examples** — improve `website/app/playground` or `examples/` demo apps

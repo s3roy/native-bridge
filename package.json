@@ -7,11 +7,11 @@
   "author": "Souvik Roy",
   "repository": {
     "type": "git",
-    "url": "https://github.com/s3roy/native-bridge.git"
+    "url": "https://github.com/s3roy/native-webview-bridge.git"
   },
   "homepage": "https://native-webview-bridge.vercel.app",
   "bugs": {
-    "url": "https://github.com/s3roy/native-bridge/issues"
+    "url": "https://github.com/s3roy/native-webview-bridge/issues"
   },
   "scripts": {
     "build": "npm run build --prefix website",
