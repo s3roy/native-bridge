@@ -1,0 +1,44 @@
+name: Feature request
+description: Propose a new NativeBridge capability or improvement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For large features, maintainers may ask you to open a Discussion first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / use case
+      description: What are you trying to do from the web page inside a WebView?
+      placeholder: e.g. Web checkout needs to know if biometric auth is available on device
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API or behavior
+      placeholder: |
+        NativeBridge.isBiometricAvailable()
+        or event: NativeBridge.onAppState(...)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Platforms needed
+      options:
+        - label: Android
+        - label: iOS
+        - label: React Native
+        - label: Web SDK only
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: How do you solve this today without this project?

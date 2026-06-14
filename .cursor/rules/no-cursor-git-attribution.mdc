@@ -1,0 +1,25 @@
+---
+description: Never add AI tools as git co-author or commit trailer
+alwaysApply: true
+---
+
+# No AI git attribution
+
+This repository must never show an **AI coding tool** as a GitHub contributor.
+
+## When creating commits
+
+- **Never** add AI co-author trailers (e.g. `Co-authored-by:` lines naming an assistant).
+- **Never** add `Made-with:` or similar AI attribution trailers.
+- **Never** pass `--trailer` to `git commit` for AI attribution.
+- Use plain commits only: `git commit -m "message"` or `-F` a message file you control.
+- If attribution appears anyway, **amend locally** to remove it before push.
+
+## When pushing
+
+- Do not push commits whose message body contains AI co-author or Made-with trailers.
+- Before the first push of new commits, verify with: `git log -1 --format=%B`.
+
+## Author identity
+
+- Commits should reflect the human maintainer only (e.g. Souvik Roy), not an AI agent.

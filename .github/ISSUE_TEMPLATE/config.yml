@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions & ideas
+    url: https://github.com/s3roy/native-bridge/discussions
+    about: Ask questions or brainstorm before opening a feature issue

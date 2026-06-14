@@ -18,8 +18,8 @@
   },
   "keywords": ["react-native", "webview", "bridge", "upi", "intent"],
   "license": "MIT",
-  "homepage": "https://github.com/s3roy/native-webview-bridge",
-  "repository": { "type": "git", "url": "https://github.com/s3roy/native-webview-bridge.git" },
+  "homepage": "https://github.com/s3roy/native-bridge",
+  "repository": { "type": "git", "url": "https://github.com/s3roy/native-bridge.git" },
   "author": "Souvik Roy",
   "license": "MIT",
 }

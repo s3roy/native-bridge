@@ -9,7 +9,7 @@
 | **Category** | Cross-platform WebView ↔ Native SDK |
 | **Platforms** | Android · iOS · React Native |
 | **Web impact** | Zero npm install — SDK auto-injected |
-| **Repository** | [github.com/s3roy/native-webview-bridge](https://github.com/s3roy/native-webview-bridge) |
+| **Repository** | [github.com/s3roy/native-bridge](https://github.com/s3roy/native-bridge) |
 
 ---
 
@@ -79,7 +79,7 @@ No feature tiers. See [FEATURES.md](./FEATURES.md) and [PLATFORM-MATRIX.md](./PL
 
 ## Get started
 
-1. Clone [github.com/s3roy/native-webview-bridge](https://github.com/s3roy/native-webview-bridge)
+1. Clone [github.com/s3roy/native-bridge](https://github.com/s3roy/native-bridge)
 2. Follow [INSTALL.md](../INSTALL.md) for your platform
 3. Open the [playground](https://native-webview-bridge.vercel.app/playground) in `BridgeWebView` to test APIs
 4. Read [docs/README.md](./README.md) for the full index
